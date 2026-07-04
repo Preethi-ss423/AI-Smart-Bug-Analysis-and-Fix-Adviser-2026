@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Smart Bug Analysis & Fix Adviser</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>AI Smart Bug Analysis & Fix Adviser</h1>
+        <p>Submit a bug report for AI-powered analysis.</p>
+
+        <form id="bugForm">
+
+            <label for="bugTitle">Bug Title</label>
+            <input type="text" id="bugTitle" placeholder="Enter bug title" required>
+
+            <label for="bugDescription">Bug Description</label>
+            <textarea id="bugDescription" rows="5" placeholder="Describe the bug" required></textarea>
+
+            <label for="stackTrace">Stack Trace / Error Log</label>
+            <textarea id="stackTrace" rows="8" placeholder="Paste stack trace or error log"></textarea>
+
+            <label for="bugFile">Upload Bug Report (.txt or .log)</label>
+            <input type="file" id="bugFile" accept=".txt,.log">
+
+            <button type="submit">Analyze Bug</button>
+
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
