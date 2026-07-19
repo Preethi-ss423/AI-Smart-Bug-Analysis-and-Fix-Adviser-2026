@@ -1,37 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>AI Smart Bug Analysis & Fix Adviser</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
 
-    <div class="container">
-        <h1>AI Smart Bug Analysis & Fix Adviser</h1>
-        <p>Submit a bug report for AI-powered analysis.</p>
+    <!-- ================= HEADER ================= -->
 
-        <form id="bugForm">
+    <header class="header">
 
-            <label for="bugTitle">Bug Title</label>
-            <input type="text" id="bugTitle" placeholder="Enter bug title" required>
+        <div class="logo-section">
 
-            <label for="bugDescription">Bug Description</label>
-            <textarea id="bugDescription" rows="5" placeholder="Describe the bug" required></textarea>
+            <div class="logo">
 
-            <label for="stackTrace">Stack Trace / Error Log</label>
-            <textarea id="stackTrace" rows="8" placeholder="Paste stack trace or error log"></textarea>
+                🤖
 
-            <label for="bugFile">Upload Bug Report (.txt or .log)</label>
-            <input type="file" id="bugFile" accept=".txt,.log">
+            </div>
 
-            <button type="submit">Analyze Bug</button>
+            <div>
 
-        </form>
+                <h1>AI Smart Bug Analysis & Fix Adviser</h1>
+
+                <p>AI Powered Bug Analysis, Root Cause Detection & Fix Suggestions</p>
+
+            </div>
+
+        </div>
+
+        <button class="new-analysis">
+
+            🔄 New Analysis
+
+        </button>
+
+    </header>
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <div class="dashboard">
+
+        <!-- LEFT PANEL -->
+
+        <div class="left-panel">
+
+            <h2>📋 Input Bug Report</h2>
+
+            <hr>
+
+            <form id="bugForm">
+
+                <label>📝 Bug Title</label>
+
+                <input
+                    type="text"
+                    id="bugTitle"
+                    placeholder="Enter Bug Title"
+                >
+
+                <label>📄 Bug Description</label>
+
+                <textarea
+                    id="bugDescription"
+                    rows="6"
+                    placeholder="Describe the issue..."
+                ></textarea>
+
+                <label>⚠ Stack Trace</label>
+
+                <textarea
+                    id="stackTrace"
+                    rows="8"
+                    placeholder="Paste Stack Trace..."
+                ></textarea>
+
+                <label>📂 Upload Bug File</label>
+
+                <input
+                    type="file"
+                    id="bugFile"
+                    accept=".txt,.log"
+                >
+
+                <button
+                    type="button"
+                    onclick="analyzeBug()"
+                    class="analyze-btn"
+                >
+
+                    🔍 Analyze Bug
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+
+        <div class="right-panel">
+
+            <h2>⚙ AI Analysis Result</h2>
+
+            <hr>
+
+            <!-- Agent Pipeline -->
+
+            <div class="agent-flow">
+
+                <div class="agent waiting">
+                    Triage Agent
+                </div>
+
+                <div class="agent waiting">
+                    Log Analysis Agent
+                </div>
+
+                <div class="agent waiting">
+                    Duplicate Detection
+                </div>
+
+                <div class="agent waiting">
+                    Root Cause Agent
+                </div>
+
+                <div class="agent waiting">
+                    Remediation Agent
+                </div>
+
+            </div>
+
+            <br>
+
+            <div id="result">
+
+                <div class="empty">
+
+                    <h2>🤖 Waiting for Bug Submission</h2>
+
+                    <p>
+
+                        Submit a bug report from the left panel.
+
+                        <br><br>
+
+                        The AI Multi-Agent System will analyze
+
+                        your bug and retrieve similar historical bugs.
+
+                    </p>
+ 
+
+                </div>
+
+            </div>
+
+        </div>
+         <button onclick="downloadReport()" class="download-btn">
+⬇ Download PDF Report
+</button>
+
+
+
     </div>
 
     <script src="script.js"></script>
 
 </body>
+
 </html>

@@ -1,62 +1,799 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7fc;
-    margin: 0;
-    padding: 0;
+/* ================================
+   AI SMART BUG ANALYSIS DASHBOARD
+==================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    font-size:20px;
+
 }
 
-.container {
-    width: 60%;
-    margin: 40px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+body{
+    background:#f5f7fb;
+    color:#333;
+    font-size:35px;
 }
 
-h1 {
-    text-align: center;
-    color: #1f4e79;
+/* Header */
+
+.header{
+    height:100px;
+    background:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 40px;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
 }
 
-p {
-    text-align: center;
-    color: gray;
+.header h1{
+    font-size:42px;
+    font-weight:800;
+    margin:0;
 }
 
-label {
-    display: block;
-    margin-top: 20px;
-    margin-bottom: 8px;
-    font-weight: bold;
+.header p{
+    font-size:55px;
+    font-weight:700;
+    margin:0;
 }
 
-input[type="text"],
+.logo-section{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.logo{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:15px;
+
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+    color:white;
+
+}
+
+.logo-section h1{
+
+    font-size:28px;
+
+    color:#1e3a8a;
+
+}
+
+.logo-section p{
+
+    color:#6b7280;
+
+    font-size:14px;
+
+}
+
+.new-analysis{
+
+    background:white;
+
+    color:#2563eb;
+
+    border:2px solid #2563eb;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.new-analysis:hover{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+/* Dashboard */
+
+.dashboard{
+    display:grid;
+    grid-template-columns:25% 25%;
+    gap:25px;
+    padding:25px;
+    align-items:start;
+}
+
+/* Panels */
+
+.left-panel label{
+    font-size:35px;
+    font-weight:600;
+}
+
+.left-panel input,
+.left-panel textarea{
+    font-size:35px;
+}
+
+.left-panel button{
+    font-size:35px;
+    font-weight:600;
+}
+.left-panel h2,
+.left-panel h3{
+    font-size:40px;
+}
+hr{
+
+    border:none;
+
+    border-top:1px solid #ececec;
+
+    margin-bottom:20px;
+
+}
+
+/* Form */
+
+label{
+
+    display:block;
+
+    margin-top:18px;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+input[type=text],
 textarea,
-input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+input[type=file]{
+
+    width:100%;
+
+    border:1px solid #d8d8d8;
+
+    border-radius:10px;
+
+    padding:12px;
+
+    font-size:15px;
+
+    transition:.3s;
+
 }
 
-textarea {
-    resize: vertical;
+
+textarea{
+
+    resize:vertical;
+
 }
 
-button {
-    width: 100%;
-    margin-top: 25px;
-    padding: 12px;
-    background-color: #1f4e79;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+input:focus,
+textarea:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 8px rgba(37,99,235,.15);
+
 }
 
-button:hover {
-    background-color: #163d5c;
+.analyze-btn{
+
+    width:100%;
+
+    margin-top:25px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.analyze-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+/* Empty */
+
+.empty{
+
+    text-align:center;
+
+    color:#8a8a8a;
+
+    margin-top:120px;
+
+}
+
+.empty h2{
+
+    color:#2563eb;
+
+}
+/* ===========================================
+   AGENT PIPELINE
+=========================================== */
+
+.agent-flow{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+
+}
+
+.agent{
+
+    background:#eef2ff;
+
+    color:#2563eb;
+
+    padding:8px 14px;
+
+    border-radius:25px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    border:1px solid #dbeafe;
+
+}
+
+.agent.waiting{
+
+    background:#f3f4f6;
+
+    color:#6b7280;
+
+}
+
+.agent.running{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+
+.agent.completed{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+/* ===========================================
+   QUERY BOX
+=========================================== */
+
+.query-box{
+
+    background:#eff6ff;
+
+    border-left:5px solid #2563eb;
+
+    padding:18px;
+
+    border-radius:10px;
+
+    margin-bottom:25px;
+
+}
+
+.query-box p{
+
+    margin:10px 0;
+
+    color:#444;
+
+}
+
+.query-box pre{
+
+    background:white;
+
+    border-radius:8px;
+
+    padding:10px;
+
+    overflow-x:auto;
+
+    margin-top:8px;
+
+}
+
+/* ===========================================
+   RESULT CARD
+=========================================== */
+
+.result-card{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:22px;
+
+    margin-top:22px;
+
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+
+    border-left:6px solid #22c55e;
+
+}
+
+.result-card:nth-child(3){
+
+    border-left-color:#3b82f6;
+
+}
+
+.result-card:nth-child(4){
+
+    border-left-color:#f97316;
+
+}
+.analysis-section{
+    width:85%;
+}
+
+#result{
+    width:85%;
+}
+
+/* ===========================================
+   CARD TITLE
+=========================================== */
+
+.result-title{
+
+    color:#1e3a8a;
+
+    font-size:22px;
+
+    margin-bottom:20px;
+
+}
+
+/* ===========================================
+   INFO GRID
+=========================================== */
+
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:150px auto;
+
+    row-gap:14px;
+
+    column-gap:18px;
+
+    margin-bottom:20px;
+
+}
+
+.info-label{
+
+    font-weight:700;
+
+    color:#1f2937;
+
+}
+
+.info-value{
+
+    color:#4b5563;
+
+}
+
+/* ===========================================
+   BADGES
+=========================================== */
+
+.badge{
+
+    display:inline-block;
+
+    padding:5px 14px;
+
+    border-radius:25px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.badge-normal{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+}
+
+.badge-critical{
+
+    background:#fee2e2;
+
+    color:#b91c1c;
+
+}
+
+.badge-fixed{
+
+    background:#dbeafe;
+
+    color:#1d4ed8;
+
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:25px;
+    font-weight:600;
+    font-size:14px;
+}
+
+.badge-critical{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.badge-p1{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.badge-runtime{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+/* ===========================================
+   DESCRIPTION
+=========================================== */
+
+.description-box{
+
+    margin-top:15px;
+
+    background:#f9fafb;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    padding:18px;
+
+    line-height:1.8;
+
+    color:#374151;
+
+    white-space:pre-wrap;
+
+    min-height:160px;
+
+}
+
+/* ===========================================
+   TABLET
+=========================================== */
+
+@media(max-width:1100px){
+
+.dashboard{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+/* ===========================================
+   MOBILE
+=========================================== */
+
+@media(max-width:700px){
+
+.header{
+
+flex-direction:column;
+
+height:auto;
+
+padding:20px;
+
+gap:15px;
+
+}
+
+.logo-section{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.dashboard{
+
+padding:15px;
+
+}
+
+.info-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.result-title{
+
+font-size:20px;
+
+}
+
+}
+
+/* ================= LOG ANALYSIS CARD ================= */
+.analysis-section {
+    margin-bottom:20px;
+}
+
+.log-analysis-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 15px;
+    border-left: 5px solid #2563eb;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+
+.log-analysis-card h3 {
+    color: #2563eb;
+    margin-bottom: 15px;
+}
+
+
+/* Each analysis row */
+
+.log-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+
+/* Label */
+
+.log-label {
+    width: 170px;
+    font-weight: 600;
+    color: #555;
+}
+
+
+/* Value */
+
+.log-value {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+
+/* Remove last line border */
+
+.log-item:last-child {
+    border-bottom: none;
+}
+
+/* ================================
+   AI BUG ANALYSIS REPORT
+================================ */
+
+.report-container{
+    max-width:850px;
+    width:100%;
+    margin:0;
+    padding:0;
+}
+.report-title{
+    text-align:center;
+    font-size:34px;
+    color:#1e3a8a;
+    margin-bottom:25px;
+}
+
+.status-box{
+    background:#dcfce7;
+    border-left:6px solid #16a34a;
+    padding:18px;
+    border-radius:10px;
+    margin-bottom:25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:18px;
+}
+
+.report-card{
+    width:100%;
+    max-width:850px;
+    background:#fff;
+    border-radius:12px;
+    padding:22px;
+    margin:20px 0;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.report-card h2{
+    color:#2563eb;
+    margin-bottom:18px;
+    border-bottom:2px solid #e5e7eb;
+    padding-bottom:8px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    row-gap:14px;
+    column-gap:18px;
+}
+
+.info-label{
+    font-weight:bold;
+    color:#374151;
+}
+
+.info-value{
+    color:#111827;
+}
+
+.description-box{
+    background:#f9fafb;
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+    padding:12px;
+    margin:10px 0;
+}
+
+pre{
+    background:#111827;
+    color:#f8fafc;
+    padding:15px;
+    border-radius:8px;
+    overflow-x:auto;
+}
+
+.duplicate-card{
+    background:#f8fafc;
+    border-left:5px solid #2563eb;
+    border-radius:10px;
+    padding:18px;
+    margin-top:18px;
+    transition:.3s;
+}
+
+.duplicate-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 18px rgba(0,0,0,.08);
+}
+
+.duplicate-card h3{
+    color:#1d4ed8;
+    margin-bottom:10px;
+}
+
+.recommendation{
+    background:#eff6ff;
+    border-left:6px solid #2563eb;
+}
+
+.recommendation p{
+    font-size:17px;
+    line-height:1.7;
+}
+
+ul{
+    padding-left:25px;
+}
+
+ul li{
+    margin-bottom:10px;
+    font-size:16px;
+}
+
+.download-btn{
+
+    margin-top:20px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.download-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+.reason-list{
+    margin:0;
+    padding-left:20px;
+}
+
+.reason-list li{
+    margin:6px 0;
+    color:#444;
+    line-height:1.5;
 }
